@@ -10,9 +10,12 @@ class GroupsController < ApplicationController
 
   def create
    @group = Group.new(group_params)
-   @group.save
+    if @group.save
+      redirect_to groups_path
+    else
+      render :new
+    end
 
-     redirect_to groups_path
    end
 
    def show
@@ -25,10 +28,16 @@ class GroupsController < ApplicationController
 
    def update
      @group = Group.find(params[:id])
-
      @group.update(group_params)
+     flash[:notice] = "更新成功"
+     redirect_to groups_path
+   end
 
-     redirect_to groups_path, notice: "Update Success"
+   def destroy
+     @group =Group.find(params[:id])
+     @group.destroy
+     flash[:alert] = "讨论组删除成功"
+     redirect_to groups_path
    end
 
    private
