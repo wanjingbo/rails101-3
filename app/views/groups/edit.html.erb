@@ -2,17 +2,6 @@
     <h2>编辑讨论租</h2>
 
     <hr>
-    <%= form_for @group do |f| %>
-
-    标题
-    <%= f.text_field :title %>
-    <br>
-    叙述
-    <br>
-    <%= f.text_area :description %>
-    <br>
-
-    <%= f.submit "提交", :disable_with => '提交中...' %>
-    <% end %>
+    <%= render "form" %>
 
 </div>
